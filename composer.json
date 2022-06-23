@@ -1,0 +1,12 @@
+{
+    "name": "adrianna/calc",
+    "type": "project",
+    "authors": [
+        {
+            "name": "akulon23",
+            "email": "akulon2303@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {}
+}
