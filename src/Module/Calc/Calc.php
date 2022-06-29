@@ -4,7 +4,7 @@ namespace Calc;
 
 class Calc implements CalcInterface
 {
-    private int $countOperation=0;
+    private int $countOperation = 0;
 
     /**
      * @inheritDoc
@@ -39,6 +39,9 @@ class Calc implements CalcInterface
     public function divideNumbers(int $number1, int $number2): float
     {
         $this->countOperation++;
+        if ($number2 === 0) {
+            return 0;
+        }
         return $number1 / $number2;
     }
 
