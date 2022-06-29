@@ -1,5 +1,5 @@
 <?php
-
+namespace Calc;
 
 interface CalcInterface
 {

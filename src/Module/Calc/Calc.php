@@ -1,5 +1,6 @@
 <?php
-require_once 'CalcInterface.php';
+
+namespace Calc;
 
 class Calc implements CalcInterface
 {

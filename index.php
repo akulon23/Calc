@@ -1,3 +1,8 @@
+<?php
+use Application\Engine;
+require __DIR__ . "/vendor/autoload.php";
+?>
+
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -53,7 +58,8 @@
     </div>
 </form>
 <?php
-require_once 'engine.php';
+$engine = new Engine();
+$engine->start();
 ?>
 </body>
 </html>

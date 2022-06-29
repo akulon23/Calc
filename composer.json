@@ -8,5 +8,15 @@
         }
     ],
     "minimum-stability": "stable",
-    "require": {}
+    "require": {
+
+    },
+
+    "autoload": {
+        "psr-4": {
+            "Calc\\": "src/Module/Calc",
+            "Application\\": "src/Module/Application"
+        }
+    }
 }
+
