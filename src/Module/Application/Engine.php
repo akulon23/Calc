@@ -27,41 +27,34 @@ class Engine
         $number2 = $this->params->getPostParam('number2', 0);
         $operationType = $this->params->getPostParam('operation-type', []);
 
-
+        $calc = new Calc ();
         $loader = new FilesystemLoader(__DIR__ . '/Views');
         $twig = new Environment($loader, [
         ]);
+
         $template = $twig->load('calcForm.twig');
-        echo $template->render([
-            'number1'=>$number1,
-            'number2'=>$number2,
-        ]);
 
+        $templateParams = [
+            'number1' => $number1,
+            'number2' => $number2,
+        ];
 
-        $calc = new Calc ();
-
-// Sprawdzenie koniecznych warunkow i zwrocenie wynikow
-        if ($number1 >= 0 && $number2 >= 0 && !empty($operationType)) {
-            if (in_array("add", $operationType)) {
-                echo 'Wynik dodawania: ' . $calc->addNumbers($number1, $number2) . '<br>';
-            }
-            if (in_array("sub", $operationType)) {
-                echo 'Wynik odejmowania: ' . $calc->subNumbers($number1, $number2) . '<br>';
-            }
-            if (in_array("multip", $operationType)) {
-                echo 'Wynik mnożenia: ' . $calc->multipNumbers($number1, $number2) . '<br>';
-            }
-            if (in_array("divide", $operationType)) {
-                if ($number2 > 0) {
-                    echo 'Wynik dzielenia: ' . $calc->divideNumbers($number1, $number2) . '<br>';
-                } else {
-                    echo 'Wynik dzielenia: Liczba 2 musi być większa od 0!';
-                }
-            }
-            echo 'Kalkulator wykonał: ' . $calc->getCountOperation() . ' operacji.';
+        if (in_array("add", $operationType)) {
+            $templateParams['add'] = $calc->addNumbers($number1, $number2);
         }
-    }
+        if (in_array("sub", $operationType)) {
+            $templateParams['sub'] = $calc->subNumbers($number1, $number2);
+        }
+        if (in_array("multip", $operationType)) {
+            $templateParams['multip'] = $calc->multipNumbers($number1, $number2);
+        }
+        if (in_array("divide", $operationType)) {
+            $templateParams['divide'] = $calc->divideNumbers($number1, $number2);
+        }
+        $templateParams ['countOperation'] = $calc->getCountOperation();
 
+        echo $template->render($templateParams);
+    }
 }
 
 
