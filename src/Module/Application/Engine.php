@@ -4,6 +4,8 @@ namespace Application;
 
 use Application\Helpers\Params;
 use Calc\Calc;
+use Twig\Environment;
+use Twig\Loader\FilesystemLoader;
 
 class Engine
 {
@@ -20,11 +22,21 @@ class Engine
 
     public function start()
     {
-
         // Pobranie zmiennych z formularza
         $number1 = $this->params->getPostParam('number1', 0);
         $number2 = $this->params->getPostParam('number2', 0);
         $operationType = $this->params->getPostParam('operation-type', []);
+
+
+        $loader = new FilesystemLoader(__DIR__ . '/Views');
+        $twig = new Environment($loader, [
+        ]);
+        $template = $twig->load('calcForm.twig');
+        echo $template->render([
+            'number1'=>$number1,
+            'number2'=>$number2,
+        ]);
+
 
         $calc = new Calc ();
 

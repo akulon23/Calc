@@ -1,0 +1,41 @@
+{% extends 'layout.twig' %}
+{% block content %}
+    <form method="post">
+        <div id="container">
+            <header>
+                <h1>Kalkulator</h1>
+            </header>
+            <div class="row-container">
+                <div class="row">
+                    <div>
+                        <div class="number">
+                            <label>Liczba 1 <input type="number" name="number1" step="1" value="{{ number1 }}"></label>
+                        </div>
+                        <div class="number">
+                            <label> Liczba 2 <input type="number" name="number2" step="1" value="{{ number2 }}"></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="box">
+                        <p> Jakie działanie wykonać? </p>
+                        <div><label> <input type="checkbox" name="operation-type[]" value="add"> dodawanie </label>
+                        </div>
+                        <div><label> <input type="checkbox" name="operation-type[]" value="sub"> odejmowanie </label>
+                        </div>
+                        <div><label> <input type="checkbox" name="operation-type[]" value="multip"> mnożenie </label>
+                        </div>
+                        <div><label> <input type="checkbox" name="operation-type[]" value="divide"> dzielenie </label>
+                        </div>
+                        <div><label> <input type="checkbox" name="operation-type[]" value="5"> potęgowanie </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="submit">
+                <input type="submit" value="Oblicz">
+                <input type="reset" value="Wyczyść">
+            </div>
+        </div>
+    </form>
+{% endblock %}
