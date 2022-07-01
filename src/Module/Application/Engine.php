@@ -4,11 +4,11 @@ namespace Application;
 
 use Application\Helpers\Params;
 use Calc\Calc;
-use Twig\Environment;
-use Twig\Loader\FilesystemLoader;
 
 class Engine
 {
+    private $templateEngine;
+    /** @var Params */
     private $params;
 
     /**
@@ -17,8 +17,8 @@ class Engine
     public function __construct()
     {
         $this->params = new Params();
+        $this->templateEngine = new TemplateEngine(__DIR__ . '/Views');
     }
-
 
     public function start()
     {
@@ -27,12 +27,7 @@ class Engine
         $number2 = $this->params->getPostParam('number2', 0);
         $operationType = $this->params->getPostParam('operation-type', []);
 
-        $calc = new Calc ();
-        $loader = new FilesystemLoader(__DIR__ . '/Views');
-        $twig = new Environment($loader, [
-        ]);
-
-        $template = $twig->load('calcForm.twig');
+        $calc = new Calc();
 
         $templateParams = [
             'number1' => $number1,
@@ -53,8 +48,9 @@ class Engine
         }
         $templateParams ['countOperation'] = $calc->getCountOperation();
 
-        echo $template->render($templateParams);
+        $this->templateEngine->render('calcForm.twig', $templateParams);
     }
+
 }
 
 
