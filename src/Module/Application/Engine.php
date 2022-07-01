@@ -5,7 +5,9 @@ namespace Application;
 use Application\Factory\LoggerFactory;
 use Application\Helpers\Params;
 use Calc\Calc;
+use Exception;
 use Psr\Log\LoggerInterface;
+use Throwable;
 
 class Engine
 {
@@ -39,7 +41,29 @@ class Engine
     public function start()
     {
         $this->logger->info('application is running');
-        $this->executionCalc();
+        try {
+            $this->executionCalc();
+        } catch (Exception $exception) {
+            $this->logger->critical(
+                $exception->getMessage(),
+                [
+                    'file' => $exception->getFile(),
+                    'line' => $exception->getLine(),
+                    'trace' => $exception->getTrace(),
+                ]
+            );
+
+            $this->templateEngine->render('layout.twig', ['errorMessage' => $exception->getMessage(),]);
+        } catch (Throwable $exception) {
+            $this->logger->critical(
+                $exception->getMessage(),
+                [
+                    'file' => $exception->getFile(),
+                    'line' => $exception->getLine(),
+                    'trace' => $exception->getTrace(),
+                ]
+            );
+        }
     }
 
     private function executionCalc()

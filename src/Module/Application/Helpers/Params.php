@@ -1,4 +1,5 @@
 <?php
+
 namespace Application\Helpers;
 
 class Params

@@ -12,8 +12,16 @@
     <link rel="stylesheet" href="main.css">
 </head>
 <body>
+{% block messages %}
+    {% if errorMessage %}
+        <div>
+            <p>Strona chwilowo niedostępna: {{ errorMessage }}. Spróbuj później.
+            </p>
+        </div>
+    {% endif %}
+{% endblock %}
 {% block content %}
-    This is the content to be displayed.
+
 {% endblock %}
 </body>
 </html>
