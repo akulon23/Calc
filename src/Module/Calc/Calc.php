@@ -2,6 +2,8 @@
 
 namespace Calc;
 
+use Calc\Exception\WrongNumberException;
+
 class Calc implements CalcInterface
 {
     private int $countOperation = 0;
@@ -40,7 +42,7 @@ class Calc implements CalcInterface
     {
         $this->countOperation++;
         if ($number2 === 0) {
-            return 0;
+            throw new WrongNumberException('Nie można wykonać dzielenia przez 0');
         }
         return $number1 / $number2;
     }
@@ -51,7 +53,6 @@ class Calc implements CalcInterface
     public function getCountOperation(): int
     {
         return $this->countOperation;
-
     }
 }
 

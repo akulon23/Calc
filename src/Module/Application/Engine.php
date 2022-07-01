@@ -5,9 +5,13 @@ namespace Application;
 use Application\Factory\LoggerFactory;
 use Application\Helpers\Params;
 use Calc\Calc;
+use Calc\Exception\WrongNumberException;
 use Exception;
 use Psr\Log\LoggerInterface;
 use Throwable;
+use Twig\Error\LoaderError;
+use Twig\Error\RuntimeError;
+use Twig\Error\SyntaxError;
 
 class Engine
 {
@@ -66,6 +70,12 @@ class Engine
         }
     }
 
+    /**
+     * @throws WrongNumberException
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
+     */
     private function executionCalc()
     {
         // Pobranie zmiennych z formularza

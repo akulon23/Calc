@@ -1,6 +1,8 @@
 <?php
 namespace Calc;
 
+use Calc\Exception\WrongNumberException;
+
 interface CalcInterface
 {
     /**
@@ -38,6 +40,7 @@ interface CalcInterface
      * @param int $number1
      * @param int $number2
      * @return float
+     * @throws WrongNumberException
      */
     public function divideNumbers(int $number1, int $number2): float;
 
