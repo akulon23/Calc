@@ -21,7 +21,7 @@ class LoggerFactory
     {
         $this->logger = new Logger('APP');
         $this->logger->pushHandler(
-            new StreamHandler(PROJECT_DIR . '/var/logs/app.log', LogLevel::WARNING)
+            new StreamHandler(PROJECT_DIR . '/var/logs/app.log', LogLevel::INFO)
         );
     }
 

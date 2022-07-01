@@ -6,7 +6,6 @@ use Application\Factory\LoggerFactory;
 use Application\Helpers\Params;
 use Calc\Calc;
 use Psr\Log\LoggerInterface;
-use Twig\Error\LoaderError;
 
 class Engine
 {
@@ -39,6 +38,7 @@ class Engine
 
     public function start()
     {
+        $this->logger->info('application is running');
         $this->executionCalc();
     }
 
