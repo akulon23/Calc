@@ -31,7 +31,7 @@ class Engine
     private $params;
 
     /**
-     * Engine constructor
+     * Inicjalizacja wlasciwosci klasy
      */
     public function __construct()
     {

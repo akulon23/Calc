@@ -26,7 +26,7 @@ class TemplateEngine
 
     /**
      * Metoda odpowiada za renderowanie szablonu.
-     * @param string $templateName  nazwa szablonu
+     * @param string $templateName nazwa szablonu
      * @param array $templateParams tablica zawierajaca parametry szablonu
      * @throws LoaderError
      * @throws RuntimeError
@@ -36,6 +36,6 @@ class TemplateEngine
     {
         $render = $this->templateEngine->load($templateName);
         echo $render->render($templateParams);
-            }
+    }
 
 }
