@@ -7,8 +7,14 @@ use Calc\Calc;
 
 class Engine
 {
+    /**
+     * @var TemplateEngine
+     */
     private $templateEngine;
-    /** @var Params */
+
+    /**
+     * @var Params
+     */
     private $params;
 
     /**
@@ -22,6 +28,11 @@ class Engine
 
     public function start()
     {
+        $this->executionCalc();
+
+    }
+
+    private function executionCalc(){
         // Pobranie zmiennych z formularza
         $number1 = $this->params->getPostParam('number1', 0);
         $number2 = $this->params->getPostParam('number2', 0);
