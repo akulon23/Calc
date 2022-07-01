@@ -2,11 +2,19 @@
 
 namespace Application;
 
+use Application\Factory\LoggerFactory;
 use Application\Helpers\Params;
 use Calc\Calc;
+use Psr\Log\LoggerInterface;
+use Twig\Error\LoaderError;
 
 class Engine
 {
+    /**
+     * @var LoggerInterface
+     */
+    private $logger;
+
     /**
      * @var TemplateEngine
      */
@@ -22,6 +30,9 @@ class Engine
      */
     public function __construct()
     {
+        $loggerFactory = new LoggerFactory();
+        $this->logger = $loggerFactory->getLogger();
+
         $this->params = new Params();
         $this->templateEngine = new TemplateEngine(__DIR__ . '/Views');
     }
@@ -29,10 +40,10 @@ class Engine
     public function start()
     {
         $this->executionCalc();
-
     }
 
-    private function executionCalc(){
+    private function executionCalc()
+    {
         // Pobranie zmiennych z formularza
         $number1 = $this->params->getPostParam('number1', 0);
         $number2 = $this->params->getPostParam('number2', 0);
