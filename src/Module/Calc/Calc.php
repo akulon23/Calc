@@ -42,7 +42,7 @@ class Calc implements CalcInterface
     {
         $this->countOperation++;
         if ($number2 === 0) {
-            throw new WrongNumberException('Nie można wykonać dzielenia przez 0');
+            throw WrongNumberException::divideByNull();
         }
         return $number1 / $number2;
     }
