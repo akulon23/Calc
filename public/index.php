@@ -1,9 +1,11 @@
 <?php
+
 use Application\Engine;
-require __DIR__ . "/vendor/autoload.php";
 
 // Pobranie i zapisanie sciezki projektu.
-const PROJECT_DIR = __DIR__;
+const PROJECT_DIR = __DIR__ . '/..';
+
+require PROJECT_DIR . "/vendor/autoload.php";
 
 $engine = new Engine();
 $engine->start();
