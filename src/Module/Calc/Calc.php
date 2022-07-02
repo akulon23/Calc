@@ -6,45 +6,65 @@ use Calc\Exception\WrongNumberException;
 
 class Calc implements CalcInterface
 {
+    private int $number1;
+    private int $number2;
+    private string $userName;
     private int $countOperation = 0;
 
-    /**
-     * @inheritDoc
-     */
-    public function addNumbers(int $number1, int $number2): int
+    public function __construct(int $number1, int $number2, string $userName)
     {
-        $this->countOperation++;
-        return $number1 + $number2;
+        $this->number1 = $number1;
+        $this->number2 = $number2;
+        $this->userName = $userName;
+        $this->saveData();
+    }
+
+    private function saveData()
+    {
+        file_put_contents(
+            PROJECT_DIR . '/var/calcData.data',
+            json_encode(['userName' => $this->userName, 'number1' => $this->number1, 'number2' => $this->number2]),
+            FILE_APPEND
+        );
     }
 
     /**
      * @inheritDoc
      */
-    public function subNumbers(int $number1, int $number2): int
+    public function addNumbers(): int
     {
         $this->countOperation++;
-        return $number1 - $number2;
+        return $this->number1 + $this->number2;
     }
 
     /**
      * @inheritDoc
      */
-    public function multipNumbers(int $number1, int $number2): int
+    public function subNumbers(): int
     {
         $this->countOperation++;
-        return $number1 * $number2;
+        return $this->number1 - $this->number2;
     }
 
     /**
      * @inheritDoc
      */
-    public function divideNumbers(int $number1, int $number2): float
+    public function multipNumbers(): int
     {
         $this->countOperation++;
-        if ($number2 === 0) {
+        return $this->number1 * $this->number2;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function divideNumbers(): float
+    {
+        $this->countOperation++;
+        if ($this->number2 === 0) {
             throw WrongNumberException::divideByNull();
         }
-        return $number1 / $number2;
+        return $this->number1 / $this->number2;
     }
 
     /**

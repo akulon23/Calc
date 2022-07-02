@@ -76,31 +76,33 @@ class Engine
      * @throws RuntimeError
      * @throws SyntaxError
      */
-    private function executionCalc()
+        private function executionCalc()
     {
         // Pobranie zmiennych z formularza
         $number1 = $this->params->getPostParam('number1', 0);
         $number2 = $this->params->getPostParam('number2', 0);
         $operationType = $this->params->getPostParam('operation-type', []);
+        $userName = $this->params->getPostParam('userName','');
 
-        $calc = new Calc();
+        $calc = new Calc($number1, $number2, $userName);
 
         $templateParams = [
             'number1' => $number1,
             'number2' => $number2,
+            'userName'=> $userName,
         ];
 
         if (in_array("add", $operationType)) {
-            $templateParams['add'] = $calc->addNumbers($number1, $number2);
+            $templateParams['add'] = $calc->addNumbers();
         }
         if (in_array("sub", $operationType)) {
-            $templateParams['sub'] = $calc->subNumbers($number1, $number2);
+            $templateParams['sub'] = $calc->subNumbers();
         }
         if (in_array("multip", $operationType)) {
-            $templateParams['multip'] = $calc->multipNumbers($number1, $number2);
+            $templateParams['multip'] = $calc->multipNumbers();
         }
         if (in_array("divide", $operationType)) {
-            $templateParams['divide'] = $calc->divideNumbers($number1, $number2);
+            $templateParams['divide'] = $calc->divideNumbers();
         }
         $templateParams ['countOperation'] = $calc->getCountOperation();
 

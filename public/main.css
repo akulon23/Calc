@@ -31,6 +31,11 @@ h1 {
 .row{
     margin-left: 45px;
     margin-top: 50px;
+    }
+
+.name {
+    padding: 5px;
+    margin-left: 25px;
 }
 .number {
         padding: 5px;
