@@ -5,6 +5,8 @@ namespace Application;
 use Application\Factory\LoggerFactory;
 use Application\Helpers\Params;
 use Calc\Calc;
+use Calc\CalcData;
+use Calc\CalcSaveDataFile;
 use Calc\Exception\WrongNumberException;
 use Exception;
 use Psr\Log\LoggerInterface;
@@ -76,20 +78,27 @@ class Engine
      * @throws RuntimeError
      * @throws SyntaxError
      */
-        private function executionCalc()
+    private function executionCalc()
     {
         // Pobranie zmiennych z formularza
         $number1 = $this->params->getPostParam('number1', 0);
         $number2 = $this->params->getPostParam('number2', 0);
         $operationType = $this->params->getPostParam('operation-type', []);
-        $userName = $this->params->getPostParam('userName','');
+        $userName = $this->params->getPostParam('userName', '');
 
-        $calc = new Calc($number1, $number2, $userName);
+
+        $calc = new Calc(
+            new CalcData($number1, $number2, $userName),
+            new CalcSaveDataFile(
+
+            )
+        );
+
 
         $templateParams = [
             'number1' => $number1,
             'number2' => $number2,
-            'userName'=> $userName,
+            'userName' => $userName,
         ];
 
         if (in_array("add", $operationType)) {
