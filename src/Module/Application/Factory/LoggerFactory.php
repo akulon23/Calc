@@ -14,23 +14,13 @@ use Psr\Log\LogLevel;
  */
 class LoggerFactory
 {
-    /** @var LoggerInterface */
-    private $logger;
-
-    public function __construct()
+    public function __invoke(): LoggerInterface
     {
-        $this->logger = new Logger('APP');
-        $this->logger->pushHandler(
+        $logger = new Logger('APP');
+        $logger->pushHandler(
             new StreamHandler(PROJECT_DIR . '/var/logs/app.log', LogLevel::INFO)
         );
-    }
 
-    /**
-     * Metoda zwracająca logger.
-     * @return LoggerInterface
-     */
-    public function getLogger(): LoggerInterface
-    {
-        return $this->logger;
+        return $logger;
     }
 }
