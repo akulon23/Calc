@@ -1,23 +1,22 @@
-{
-    "name": "adrianna/calc",
-    "type": "project",
-    "authors": [
-        {
-            "name": "akulon23",
-            "email": "akulon2303@gmail.com"
-        }
-    ],
-    "minimum-stability": "stable",
-    "require": {
-        "php": "^8.0",
-        "twig/twig": "^3.0",
-        "monolog/monolog": "^2.7"
-    },
-
-    "autoload": {
-        "psr-4": {
-            "Calc\\": "src/Module/Calc",
-            "Application\\": "src/Module/Application"
-        }
+{"name": "adrianna/calc",
+  "type": "project",
+  "authors": [
+    {
+      "name": "akulon23",
+      "email": "akulon2303@gmail.com"
     }
+  ],
+  "minimum-stability": "stable",
+  "require": {
+    "php": "^8.0",
+    "twig/twig": "^3.0",
+    "monolog/monolog": "^2.7",
+    "laminas/laminas-servicemanager": "^3.13"
+  },
+  "autoload": {
+    "psr-4": {
+      "Calc\\": "src/Module/Calc",
+      "Application\\": "src/Module/Application"
+    }
+  }
 }
