@@ -17,4 +17,17 @@ class Params
         }
         return $defaultValue;
     }
+
+    /**
+     * Funkcja pobiera wartość z tablicy superglobalnej $_GET lub zwraca domyslna wartosc
+     * @param $paramName Nazwa pobieranego parametru
+     * @param $defaultValue Wartosc domyslna
+     * @return mixed Wartosc parametru
+     */
+    public function getParam($paramName, $defaultValue){
+        if (array_key_exists($paramName, $_GET)){
+            return $_GET[$paramName];
+        }
+        return $defaultValue;
+    }
 }
