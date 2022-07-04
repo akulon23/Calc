@@ -2,18 +2,12 @@
 
 namespace Application;
 
-use Application\Factory\LoggerFactory;
-use Application\Helpers\Params;
-use Calc\Calc;
-use Calc\CalcData;
-use Calc\CalcSaveDataFile;
-use Calc\Exception\WrongNumberException;
+use Application\Factory\ServiceMenagerFactory;
+use Calc\Controller\CalcIndex;
 use Exception;
 use Psr\Log\LoggerInterface;
 use Throwable;
-use Twig\Error\LoaderError;
-use Twig\Error\RuntimeError;
-use Twig\Error\SyntaxError;
+
 
 class Engine
 {
@@ -27,28 +21,26 @@ class Engine
      */
     private $templateEngine;
 
-    /**
-     * @var Params
-     */
-    private $params;
+
+    private $serviceMenager;
+
 
     /**
      * Inicjalizacja wlasciwosci klasy
      */
     public function __construct()
     {
-        $loggerFactory = new LoggerFactory();
-        $this->logger = $loggerFactory->getLogger();
-
-        $this->params = new Params();
-        $this->templateEngine = new TemplateEngine(__DIR__ . '/Views');
+        $this->serviceMenager = (new ServiceMenagerFactory())->getServiceMenager();
+        $this->templateEngine = $this->serviceMenager->get(TemplateEngine::class);
+        $this->logger = $this->serviceMenager->get(LoggerInterface::class);
     }
 
     public function start()
     {
         $this->logger->info('application is running');
         try {
-            $this->executionCalc();
+            $calcController = $this->serviceMenager->get(CalcIndex::class);
+            $calcController->index();
         } catch (Exception $exception) {
             $this->logger->critical(
                 $exception->getMessage(),
@@ -72,51 +64,6 @@ class Engine
         }
     }
 
-    /**
-     * @throws WrongNumberException
-     * @throws LoaderError
-     * @throws RuntimeError
-     * @throws SyntaxError
-     */
-    private function executionCalc()
-    {
-        // Pobranie zmiennych z formularza
-        $number1 = $this->params->getPostParam('number1', 0);
-        $number2 = $this->params->getPostParam('number2', 0);
-        $operationType = $this->params->getPostParam('operation-type', []);
-        $userName = $this->params->getPostParam('userName', '');
-
-
-        $calc = new Calc(
-            new CalcData($number1, $number2, $userName),
-            new CalcSaveDataFile(
-
-            )
-        );
-
-
-        $templateParams = [
-            'number1' => $number1,
-            'number2' => $number2,
-            'userName' => $userName,
-        ];
-
-        if (in_array("add", $operationType)) {
-            $templateParams['add'] = $calc->addNumbers();
-        }
-        if (in_array("sub", $operationType)) {
-            $templateParams['sub'] = $calc->subNumbers();
-        }
-        if (in_array("multip", $operationType)) {
-            $templateParams['multip'] = $calc->multipNumbers();
-        }
-        if (in_array("divide", $operationType)) {
-            $templateParams['divide'] = $calc->divideNumbers();
-        }
-        $templateParams ['countOperation'] = $calc->getCountOperation();
-
-        $this->templateEngine->render('calcForm.twig', $templateParams);
-    }
 
 }
 
