@@ -2,9 +2,9 @@
 
 namespace Application;
 
-use Application\Factory\ServiceMenagerFactory;
-use Calc\Controller\CalcIndex;
+use Application\Factory\ServiceManagerFactory;
 use Exception;
+use Laminas\ServiceManager\ServiceManager;
 use Psr\Log\LoggerInterface;
 use Throwable;
 
@@ -21,8 +21,14 @@ class Engine
      */
     private $templateEngine;
 
-
-    private $serviceMenager;
+    /**
+     * @var ServiceManager
+     */
+    private $serviceManager;
+    /**
+     * @var Router
+     */
+    private $router;
 
 
     /**
@@ -30,17 +36,17 @@ class Engine
      */
     public function __construct()
     {
-        $this->serviceMenager = (new ServiceMenagerFactory())->getServiceMenager();
-        $this->templateEngine = $this->serviceMenager->get(TemplateEngine::class);
-        $this->logger = $this->serviceMenager->get(LoggerInterface::class);
+        $this->serviceManager = (new ServiceManagerFactory())->getServiceMenager();
+        $this->templateEngine = $this->serviceManager->get(TemplateEngine::class);
+        $this->logger = $this->serviceManager->get(LoggerInterface::class);
+        $this->router = $this->serviceManager->get(Router::class);
     }
 
     public function start()
     {
         $this->logger->info('application is running');
         try {
-            $calcController = $this->serviceMenager->get(CalcIndex::class);
-            $calcController->index();
+            $this->router->router();
         } catch (Exception $exception) {
             $this->logger->critical(
                 $exception->getMessage(),
