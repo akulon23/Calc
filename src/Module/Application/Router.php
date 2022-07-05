@@ -12,15 +12,15 @@ use Psr\Container\ContainerInterface;
 class Router
 {
     private ContainerInterface $serviceManager;
-    private array $config;
+    private array $configController;
     private Params $params;
 
     public function __construct(
-        array $config,
+        array $configController,
         ContainerInterface $serviceManager,
         Params $params
     ) {
-        $this->config = $config;
+        $this->configController = $configController;
         $this->serviceManager = $serviceManager;
         $this->params = $params;
     }
@@ -29,9 +29,9 @@ class Router
     {
         $id = $this->params->getParam('id', 'default');
 
-        if (array_key_exists($id, $this->config)) {
+        if (array_key_exists($id, $this->configController)) {
             /** @var ControllerInterface $controller */
-            $controller = $this->serviceManager->get($this->config[$id]);
+            $controller = $this->serviceManager->get($this->configController[$id]);
             return $controller->index();
         }
         throw new Exception('Nie ma takiej ścieżki');

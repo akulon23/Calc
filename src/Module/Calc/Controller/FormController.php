@@ -7,7 +7,7 @@ use Calc\Calc;
 use Calc\CalcData;
 use Calc\CalcSaveDataFile;
 
-class CalcIndex
+class FormController
 {
     private $params;
     private $templateEngine;

@@ -9,8 +9,8 @@ use Application\Factory\Helpers\ParamsFactory;
 use Application\Helpers\Params;
 use Application\Router;
 use Application\TemplateEngine;
-use Calc\Controller\CalcIndex;
-use Calc\Factory\CalcIndexFactory;
+use Calc\Controller\FormController;
+use Calc\Factory\FormControllerFactory;
 use Laminas\ServiceManager\ServiceManager;
 use Psr\Log\LoggerInterface;
 
@@ -24,7 +24,7 @@ class ServiceManagerFactory
             [
                 'factories' => [
                     TemplateEngine::class => TemplateEngineFactory::class,
-                    CalcIndex::class => CalcIndexFactory::class,
+                    FormController::class => FormControllerFactory::class,
                     Params::class => ParamsFactory::class,
                     LoggerInterface::class => LoggerFactory::class,
                     Router::class=>RouterFactory::class,

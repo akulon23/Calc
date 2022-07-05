@@ -7,7 +7,7 @@ namespace Application\Factory;
 use Application\Controller\DefaultController;
 use Application\Helpers\Params;
 use Application\Router;
-use Calc\Controller\CalcIndex;
+use Calc\Controller\FormController;
 use Psr\Container\ContainerInterface;
 
 class RouterFactory
@@ -16,7 +16,7 @@ class RouterFactory
     {
         return new Router(
             [
-                'calcForm' => CalcIndex::class,
+                'calcForm' => FormController::class,
                 'default' => DefaultController::class,
             ],
             $container,

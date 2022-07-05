@@ -3,12 +3,12 @@ namespace Calc\Factory;
 
 use Application\Helpers\Params;
 use Application\TemplateEngine;
-use Calc\Controller\CalcIndex;
+use Calc\Controller\FormController;
 use Psr\Container\ContainerInterface;
 
-class CalcIndexFactory
+class FormControllerFactory
 {
   public function __invoke(ContainerInterface $container){
-      return new CalcIndex($container->get(Params::class),$container->get(TemplateEngine::class));
+      return new FormController($container->get(Params::class), $container->get(TemplateEngine::class));
   }
 }
