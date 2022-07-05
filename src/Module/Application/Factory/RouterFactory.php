@@ -4,6 +4,7 @@
 namespace Application\Factory;
 
 
+use Application\Controller\DefaultController;
 use Application\Helpers\Params;
 use Application\Router;
 use Calc\Controller\CalcIndex;
@@ -16,6 +17,7 @@ class RouterFactory
         return new Router(
             [
                 'calcForm' => CalcIndex::class,
+                'default' => DefaultController::class,
             ],
             $container,
             $container->get(Params::class),

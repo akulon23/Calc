@@ -3,6 +3,8 @@
 namespace Application\Factory;
 
 
+use Application\Controller\DefaultController;
+use Application\Factory\Controller\DefaultControllerFactory;
 use Application\Factory\Helpers\ParamsFactory;
 use Application\Helpers\Params;
 use Application\Router;
@@ -26,6 +28,7 @@ class ServiceManagerFactory
                     Params::class => ParamsFactory::class,
                     LoggerInterface::class => LoggerFactory::class,
                     Router::class=>RouterFactory::class,
+                    DefaultController::class=>DefaultControllerFactory::class,
                 ],
             ]
         );
