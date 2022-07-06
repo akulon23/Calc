@@ -7,31 +7,31 @@ use Calc\Exception\WrongNumberException;
 interface CalcInterface
 {
     /**
-     * Pobieranie ilosci wykonanych operacji
+     * Downloading the number of operations performed
      * @return int
      */
     public function getCountOperation(): int;
 
     /**
-     * Metoda dodajaca dwie liczby
+     * Method to add two numbers
      * @return int
      */
     public function addNumbers(): int;
 
     /**
-     * Metoda odejmujaca dwie liczby od siebie
+     * Method of subtracting two numbers from each other
      * @return int
      */
     public function subNumbers(): int;
 
     /**
-     * Metoda mnozaca dwie liczby
+     * A method that multiplies two numbers
      * @return int
      */
     public function multipNumbers(): int;
 
     /**
-     * Metoda dzielaca dwie liczby
+     * A method that divides two numbers
      * @return float
      * @throws WrongNumberException
      */

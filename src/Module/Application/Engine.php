@@ -32,7 +32,7 @@ class Engine
 
 
     /**
-     * Inicjalizacja wlasciwosci klasy
+     * Initialization of class properties
      */
     public function __construct()
     {

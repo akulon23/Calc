@@ -25,9 +25,9 @@ class TemplateEngine
     }
 
     /**
-     * Metoda odpowiada za renderowanie szablonu.
-     * @param string $templateName nazwa szablonu
-     * @param array $templateParams tablica zawierajaca parametry szablonu
+     * The method is responsible for rendering the template.
+     * @param string $templateName
+     * @param array $templateParams
      * @throws LoaderError
      * @throws RuntimeError
      * @throws SyntaxError

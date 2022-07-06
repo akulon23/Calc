@@ -5,10 +5,10 @@ namespace Application\Helpers;
 class Params
 {
     /**
-     * Funkcja pobiera wartosc z tablicy superglobalnej $_POST lub zwraca domyslna wartosc
-     * @param string $paramName Nazwa pobieranego parametru
-     * @param mixed $defaultValue Wartosc domyślna
-     * @return mixed Wartosc parametru
+     * The function takes a value from the $_POST superglobal array or returns a default value
+     * @param string $paramName Name of the downloaded parameter
+     * @param mixed $defaultValue Default value
+     * @return mixed Parameter value
      */
     public function getPostParam(string $paramName, $defaultValue)
     {
@@ -19,10 +19,10 @@ class Params
     }
 
     /**
-     * Funkcja pobiera wartość z tablicy superglobalnej $_GET lub zwraca domyslna wartosc
-     * @param $paramName Nazwa pobieranego parametru
-     * @param $defaultValue Wartosc domyslna
-     * @return mixed Wartosc parametru
+     * The function takes a value from the $_GET superglobal array or returns a default value
+     * @param $paramName Name of the downloaded parameter
+     * @param $defaultValue Default value
+     * @return mixed Parameter value
      */
     public function getParam($paramName, $defaultValue){
         if (array_key_exists($paramName, $_GET)){

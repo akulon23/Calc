@@ -20,7 +20,7 @@ class FormController
 
     public function index()
     {
-        // Pobranie zmiennych z formularza
+        // Downloading variables from the form
         $number1 = $this->params->getPostParam('number1', 0);
         $number2 = $this->params->getPostParam('number2', 0);
         $operationType = $this->params->getPostParam('operation-type', []);

@@ -8,7 +8,7 @@ use Psr\Log\LoggerInterface;
 use Psr\Log\LogLevel;
 
 /**
- * Klasa tworzaca logger.
+ * Class creating a logger.
  * Class LoggerFactory
  * @package Application\Factory
  */
