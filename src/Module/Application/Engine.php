@@ -36,7 +36,7 @@ class Engine
      */
     public function __construct()
     {
-        $this->serviceManager = (new ServiceManagerFactory())->getServiceMenager();
+        $this->serviceManager = (new ServiceManagerFactory())->getServiceManager();
         $this->templateEngine = $this->serviceManager->get(TemplateEngine::class);
         $this->logger = $this->serviceManager->get(LoggerInterface::class);
         $this->router = $this->serviceManager->get(Router::class);
