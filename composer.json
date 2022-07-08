@@ -9,6 +9,7 @@
   "minimum-stability": "stable",
   "require": {
     "php": "^8.0",
+    "ext-mysqli": "*",
     "twig/twig": "^3.0",
     "monolog/monolog": "^2.7",
     "laminas/laminas-servicemanager": "^3.13"
