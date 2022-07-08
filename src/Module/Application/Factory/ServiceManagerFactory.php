@@ -7,6 +7,7 @@ use Application\Controller\DefaultController;
 use Application\Factory\Controller\DefaultControllerFactory;
 use Application\Factory\Helpers\ParamsFactory;
 use Application\Helpers\Params;
+use Application\MysqlService;
 use Application\Router;
 use Application\TemplateEngine;
 use Calc\Controller\FormController;
@@ -27,8 +28,9 @@ class ServiceManagerFactory
                     FormController::class => FormControllerFactory::class,
                     Params::class => ParamsFactory::class,
                     LoggerInterface::class => LoggerFactory::class,
-                    Router::class=>RouterFactory::class,
-                    DefaultController::class=>DefaultControllerFactory::class,
+                    Router::class => RouterFactory::class,
+                    DefaultController::class => DefaultControllerFactory::class,
+                    MysqlService::class => MysqlServiceFactory::class,
                 ],
             ]
         );
@@ -37,7 +39,7 @@ class ServiceManagerFactory
     /**
      * @return ServiceManager
      */
-    public function getServiceMenager(): ServiceManager
+    public function getServiceManager(): ServiceManager
     {
         return $this->serviceManager;
     }
